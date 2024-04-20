@@ -151,7 +151,7 @@ while(true){
 
     $apikey=file_get_contents("Apikey");
 
-    $cap= Captcha($api_url,$apiKey,"6LcEVrMpAAAAAOrwKManbgoz-WyKzOEzhw45yLBU",$pageurl,7);
+    $cap= Rv2($api_url,$apiKey,"6LcEVrMpAAAAAOrwKManbgoz-WyKzOEzhw45yLBU",$pageurl,7);
 
     if(!$cap)continue;
 
