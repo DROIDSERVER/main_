@@ -1,1 +1,549 @@
-apakabar
+
+
+const
+
+B_RED = "\033[101m\033[1;36m",
+
+B_PUT = "\033[7m",
+
+B_IJO = "\033[102m\033[1;30m",
+
+B_KUN= "\033[103m",
+
+B_BIR = "\033[104m",
+
+B_END = "\033[0m",
+
+itm = "\033[1;0m",
+
+a = "\033[1;30m",
+
+b = "\033[1;34m",
+
+c = "\033[1;36m",
+
+p = "\033[1;37m",
+
+h = "\033[1;32m",
+
+m = "\33[31;1m",
+
+hm = "\033[01;38;5;35m",
+
+k = "\033[01;38;5;221m",
+
+o  = "\033[01;38;5;214m",
+
+w = m,
+
+w2= k,
+
+w3= h,
+
+panah1=w3." [›] ".p,
+
+panah =k." › ".p,
+
+n = "\n",
+
+r = "\r",
+
+rr= "\r                                          \r",
+
+lo=p." loading...",
+
+lo1=p." loading......",
+
+eng="1.0.4";
+
+
+
+Function cl(){system("clear");unlink("alom.tmp-15d94603.tmp.");unlink("tmp");unlink("cookie.txt");}
+
+Function a_claim(){
+
+    echo " ".B_RED.p.str_pad("Waiting... ", 55, " ", STR_PAD_BOTH).B_END;sleep(2);print r;
+
+    echo " ".B_IJO.str_pad("Claim Success ", 55, " ", STR_PAD_BOTH).B_END;sleep(3);print r;
+
+    echo "                                                        ".r;
+
+}
+
+Function ban(){
+
+    cl();echo n;
+
+    echo " ".B_IJO.str_pad(" ", 55, " ", STR_PAD_BOTH).B_END.n;
+
+    echo " ".B_IJO.str_pad("ON (OBAT NYAMUK )| © 2024 ", 56, " ", STR_PAD_BOTH).B_END.n;
+
+    echo " ".B_IJO.str_pad(" ", 55, " ", STR_PAD_BOTH).B_END.n;
+
+    echo " ".B_PUT.p.str_pad("Bot Engine › ".eng, 57, " ", STR_PAD_BOTH).B_END.n;
+
+    echo " ".B_PUT.p.str_pad("Script › ".host[0]." | Ver › ".version, 59, " ", STR_PAD_BOTH).B_END.n;
+
+    echo " ".B_PUT.p.str_pad(" ", 55, " ", STR_PAD_BOTH).B_END.n;
+
+    echo " ".p.str_pad(" ", 50, " ", STR_PAD_BOTH).B_END.n;
+
+    Echo " ".hm.str_pad(" Mencari Cuan Sambil Rebahan ", 50, " ", STR_PAD_BOTH).B_END.n.n;
+
+}
+
+Function TimeZone(){$api = json_decode(file_get_contents("http://ip-api.com/json"),1);if($api){$tz = $api["timezone"];date_default_timezone_set($tz);return $api["country"];}else{date_default_timezone_set("UTC");return "UTC";}}
+
+Function curl($u, $h = 0, $p = 0,$c = 0) {while(true){$ch = curl_init();curl_setopt($ch, CURLOPT_URL, $u);curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);curl_setopt($ch, CURLOPT_COOKIE,TRUE);curl_setopt($ch, CURLOPT_COOKIEFILE,"cookie.txt");curl_setopt($ch, CURLOPT_COOKIEJAR,"cookie.txt");if($p) {curl_setopt($ch, CURLOPT_POST, true);curl_setopt($ch, CURLOPT_POSTFIELDS, $p);}if($h) {curl_setopt($ch, CURLOPT_HTTPHEADER, $h);}curl_setopt($ch, CURLOPT_HEADER, true);$r = curl_exec($ch);$c = curl_getinfo($ch);if(!$c) return "Curl Error : ".curl_error($ch); else{$hd = substr($r, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));$bd = substr($r, curl_getinfo($ch, CURLINFO_HEADER_SIZE));curl_close($ch);if(!$bd){print w3." Check Your Connection!";sleep(2);print "\r                             \r";continue;}return array($hd,$bd)[1];}}}
+
+Function gas($url, $post = 0, $httpheader = 0, $proxy = 0){$ch = curl_init();curl_setopt($ch, CURLOPT_URL, $url);curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);curl_setopt($ch, CURLOPT_TIMEOUT, 60);curl_setopt($ch, CURLOPT_COOKIE,TRUE);if($post){curl_setopt($ch, CURLOPT_POST, true);curl_setopt($ch, CURLOPT_POSTFIELDS, $post);}if($httpheader){curl_setopt($ch, CURLOPT_HTTPHEADER, $httpheader);}if($proxy){curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);curl_setopt($ch, CURLOPT_PROXY, $proxy);}curl_setopt($ch, CURLOPT_HEADER, true);$response = curl_exec($ch);$httpcode = curl_getinfo($ch);if(!$httpcode) return "Curl Error : ".curl_error($ch); else{$header = substr($response, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));$body = substr($response, curl_getinfo($ch, CURLINFO_HEADER_SIZE));curl_close($ch);return array($header, $body);}}
+
+Function Efek($str,$usleep){$arr = str_split($str);foreach ($arr as $az){print $az;usleep($usleep);}}
+
+Function Ambil($res,$depan,$belakang,$nomor){$data=explode($belakang,explode($depan,$res)[$nomor])[0];return $data;} 
+
+Function Ambil_1($res,$pemisah){$data=explode($pemisah,$res)[0];return $data;}
+
+Function AntiBot($res,$Nomor){$AntiBot = Ambil($res,'rel=\"','\"',$Nomor);return $AntiBot;}
+
+Function Save($file){if(file_exists($file)) {$data = file_get_contents($file);}else{$data = readline(" ".k."Input ".p.$file." : ".n);print n;file_put_contents($file,$data);}return $data;}
+
+Function multi($wallet){$tambah = readline(" ".w3."Input ".$wallet." :".p);$save = fopen($wallet, "a");fwrite($save, $tambah.n);fclose($save);sleep(1);print p." Success add ".w3.$wallet.n.p;sleep(1);}
+
+Function get($url){return curl($url,h());}
+
+Function post($url,$data){return curl($url,h(),$data);}
+
+function postt($url,$data, $ua){return curl($url, $data, $ua)[1]; //earnbitmoon
+
+}
+
+Function line(){TimeZone();return B_PUT.p.str_pad(host[0]." | ".date("l")." ".date("h:i:s A"), 55, " ", STR_PAD_BOTH).B_END.n;}
+
+Function lineu(){return p.str_repeat('─',50).n;}
+
+Function FirCF($r){(preg_match('/Cloudflare/',$r) || preg_match('/Just a moment.../',$r))? $data['cf']=true:$data['cf']=false;return $data;}
+
+Function tim($tmr){
+
+    date_default_timezone_set("UTC");
+
+    $panah = array(w."❯".p."❯❯❯❯",p."❯".w."❯".p."❯❯❯",p."❯❯".w."❯".p."❯❯",p."❯❯❯".w."❯".p."❯",p."❯❯❯❯".w."❯");
+
+    $timr = time()+$tmr;
+
+		while(true):
+
+            foreach($panah as $pan){
+
+                print r;$res=$timr-time();
+
+                if($res < 1){break;}
+
+                print p."                    ".date('H',$res).":".p.date('i',$res).":".p.date('s',$res)." | $pan"."\r";usleep(200000);
+
+                
+
+            }if($res < 1){break;}
+
+    endwhile;  
+
+}
+
+Function getUserAgent(){
+
+	$userAgentArray[] = "Mozilla/5.0 (Linux; Android 11; Pixel C Build/RQ1A.210205.004) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.90 Safari/537.36 GNews/2021022310";
+
+    $userAgentArray[] = "Mozilla/5.0 (Linux; Android 10; SM-G960F) AppleWebKit/537.36 (KHTML, like Gecko) Brave Chrome/89.0.4389.86 Mobile Safari/537.36";
+
+    $userAgentArray[] = "Mozilla/5.0 (Linux; Android 9; SM-N976N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.40 Mobile Safari/537.36";
+
+    $userAgentArray[] = "Mozilla/5.0 (Linux; Android 10; ZTE A2020G Pro) AppleWebKit/537.36 (KHTML, like Gecko) Brave Chrome/89.0.4389.86 Mobile Safari/537.36";
+
+    $userAgentArray[] = "Mozilla/5.0 (Linux; Android 12; RMX3627 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/430.0.0.23.113;]";
+
+    $userAgentArray[] = "Mozilla/5.0 (Linux; Android 12; RMX3624 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/99.0.4844.88 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/387.0.0.24.102;]";
+
+	$getArrayKey = array_rand($userAgentArray);
+
+	return $userAgentArray[$getArrayKey];
+
+}
+
+Function Reff(){
+
+    Efek(k." Warning : ".p.n.n.
+
+        " ".m."[100% FREE Not For Sale]".p.n.n.
+
+        " All risks are at your own risk".n.n.
+
+        " Press ".w3."CTRL".p." + ".w3."C".p." if ".w3."Link website".p." missed".p.n.n.
+
+        " Link website  : ".w3." ".host[2].n.n
+
+        ,25000);sleep(10);
+
+}
+
+Function LP(){
+
+    ban();cl();
+
+}
+
+Function LPP(){
+
+    TimeZone();
+
+    check_key:
+
+    cl();ban();
+
+    $r=file_get_contents('https://xeidkdseotiba.blogspot.com');
+
+    $ambil= Ambil($r,"<scrypt duit='","'/>",1);
+
+    $data = kunci($ambil);
+
+    $date    = date("D");
+
+    $Mentah  = Ambil($data,$date." [ "," | ",1);
+
+    $Short   = Ambil($data,"$Mentah | "," ]",1);
+
+    if(!file_exists("key")){
+
+        echo " ".p.str_pad("Link : ".w3.$Short, 50, " ", STR_PAD_BOTH).n;
+
+        echo p." ".w3;
+
+        $p= trim(fgets(STDIN));
+
+        if($pass=$p){ 
+
+            $save = fopen("key", "w");
+
+            fwrite($save, $p);
+
+            fclose($save);
+
+        }else{
+
+            echo " ".m.str_pad("Password is incorrect ", 50, " ", STR_PAD_BOTH).n;
+
+            sleep(3);
+
+            print r;
+
+            goto check_key;
+
+        }  
+
+    }
+
+    $res = file_get_contents($Mentah);
+
+    $pass= Ambil($res,'<p>Password : ','</p>',1);
+
+    $read=file_get_contents('key');
+
+    if($read == $pass){
+
+        echo r;
+
+        echo " ".w3.str_pad("Password is correct ✅", 50, " ", STR_PAD_BOTH).n;
+
+        sleep(3);
+
+        print r;
+
+    }elseif($read !=$pass){
+
+        echo " ".p.str_pad("Link : ".w3.$Short, 50, " ", STR_PAD_BOTH).n;
+
+        echo p." ".w3;
+
+        $p= trim(fgets(STDIN));
+
+        if($p ==''){goto check_key;} 
+
+        if($pass == $p){
+
+                $save = fopen("key", "w");
+
+                fwrite($save, $p);
+
+                print r;
+
+                echo " ".w3.str_pad("Password is correct ✅", 50, " ", STR_PAD_BOTH).n;
+
+                fclose($save);
+
+                sleep(3);
+
+                print r;
+
+        }else{
+
+            echo " ".m.str_pad("Password is incorrect ", 50, " ", STR_PAD_BOTH).n;
+
+            sleep(3);
+
+            goto check_key;
+
+        }    
+
+    }   
+
+}
+
+
+
+Function HCap($api_url,$apikey, $sitekey, $pageurl,$delay){
+
+	$r =  json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=hcaptcha&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);
+
+	$status = $r["status"];
+
+	if($status == 0){print(" Apikey: ".k.$r["request"].n.p);return 0;}
+
+	$id = $r["request"];
+
+	while(true){
+
+		print lo;
+
+		$r = json_decode(file_get_contents($api_url."/res.php?key=".$apikey."&action=get&id=".$id."&json=1"),1);
+
+		$status = $r["status"];
+
+		if($r["request"] == "CAPCHA_NOT_READY"){
+
+			echo "\r                      \r";
+
+			print lo1;
+
+			sleep($delay);
+
+			print "\r                    \r";
+
+			continue;
+
+		}
+
+		if($status == 1){print "\r                 \r";return $r["request"];}
+
+		return 0;
+
+	}
+
+}
+
+Function Rv2($api_url,$apikey, $sitekey, $pageurl,$delay){
+
+    $r =  json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=userrecaptcha&googlekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);
+
+    $status = $r["status"];
+
+    if($status == 0){print(" Apikey: ".k.$r["request"].n);return 0;}
+
+    $id = $r["request"];
+
+    while(true){
+
+        print "\r                    \r";
+
+        print lo;
+
+        $r = json_decode(file_get_contents($api_url."/res.php?key=".$apikey."&action=get&id=".$id."&json=1"),1);
+
+        $status = $r["status"];
+
+        if($r["request"] == "CAPCHA_NOT_READY"){
+
+        print "\r                    \r";
+
+        print lo1;
+
+        sleep($delay);
+
+        print "\r                    \r";
+
+        continue;
+
+        }
+
+        if($status == 1){print "\r                    \r";return $r["request"];}
+
+        return 0;
+
+    }
+
+}
+
+
+
+Function anti_bot($source,$api_url,$apikey,$delay){
+
+	$main = explode('"',explode('<img src="',explode('Bot links',$source)[1])[1])[0];
+
+	$antiBot["main"] = $main;
+
+	$src = explode('rel=\"',$source);
+
+	foreach($src as $x => $sour){
+
+		if($x == 0)continue;
+
+		$no = explode('\"',$sour)[0];
+
+		$img = Ambil($sour,'<img src=\"','\"',1);
+
+		$antiBot[$no] = $img;
+
+	}
+
+	$ua = "Content-type: application/x-www-form-urlencoded";
+
+	$data = ["key"=>$apikey,"method"=>"antibot","json"=>1] + $antiBot;
+
+	$opts = ['http' =>['method'  => 'POST','header' => $ua,'content' => http_build_query($data)]];
+
+	
+
+	$r = json_decode(file_get_contents($api_url.'/in.php', false, stream_context_create($opts)),1);
+
+	$status = $r["status"];
+
+	if($status == 0){
+
+		print(p." Apikey: ".k.$r["request"].n);
+
+		return 0;
+
+	}
+
+	$id = $r["request"];
+
+	while(true){
+
+		print lo;
+
+		$r = json_decode(file_get_contents($api_url."/res.php?key=".$apikey."&action=get&id=".$id."&json=1"),1);
+
+		$status = $r["status"];
+
+		if($r["request"] == "CAPCHA_NOT_READY"){
+
+			print "\r                      \r";
+
+			print lo1;
+
+			sleep($delay);
+
+			print "\r                    \r";
+
+			continue;
+
+		}
+
+		if($status == 1){print "\r                 \r";return "+".str_replace(",","+",$r["request"]);}
+
+		return 0;
+
+	}
+
+}
+
+Function Api_Bal($api_url){
+
+    $apikey = file_get_contents("Apikey");
+
+	$r = json_decode(file_get_contents($api_url."/res.php?action=userinfo&key=".$apikey),1);
+
+    if(!$r["balance"]){print (" Apikey: ".w3." Saldo Apikey habis!".n);}return $r["balance"];
+
+}
+
+Function RecaptchaV3($anchor){
+
+    while(true){
+
+        $r = curl($anchor,array());
+
+        $token = Ambil($r,'<input type="hidden" id="recaptcha-token" value="','">',1);
+
+        $sitekey = explode("&",$anchor)[1];
+
+        $co = explode("&",$anchor)[2];
+
+        $v = explode("&",$anchor)[4];
+
+        $r = curl("https://www.google.com/recaptcha/api2/reload?".$sitekey,array(),"$v&reason=q&c=$token&$v&$co");
+
+        $res = explode('"',explode('["rresp","',$r)[1])[0];
+
+        if($res){return $res;}
+
+    }
+
+}
+
+Function cek($isi){print w3." [".p."$isi".w3."]".p;}
+
+Function Menu($no, $str){print w3." [".p.$no.w3."] ".p.$str.n;}
+
+Function Select($str){return w3." [".p."Input ".$str.w3."] ".n." ".p;}
+
+Function His($newdata,$data=0){if(!$data){$data = [];}return array_merge($data,$newdata);}
+
+Function Captcha($api_url,$apikey, $sitekey, $pageurl,$delay){
+
+    global $r;
+
+    $x=$r;
+
+    if(preg_match("/h-captcha/",$x)){$r =  json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=hcaptcha&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
+
+    if(preg_match("/g-recaptcha/",$x)){$r =  json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=userrecaptcha&googlekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
+
+    if(preg_match("/cf-turnstile/",$x)){$r =  json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=turnstile&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
+
+    $status = $r["status"];
+
+        if($status == 0){print(" Apikey: ".k.$r["request"].n.p);return 0;}
+
+        $id = $r["request"];
+
+        while(true){
+
+            print lo;
+
+            $r = json_decode(file_get_contents($api_url."/res.php?key=".$apikey."&action=get&id=".$id."&json=1"),1);
+
+            $status = $r["status"];
+
+            if($r["request"] == "CAPCHA_NOT_READY"){
+
+                print rr;
+
+                print lo1;
+
+                sleep($delay);
+
+                print rr;
+
+                continue;
+
+            }
+
+            if($status == 1){print rr;return $r["request"];}
+
+            return 0;
+
+        }
+
+}
+
+
